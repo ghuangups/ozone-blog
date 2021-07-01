@@ -1,0 +1,67 @@
+CREATE SCHEMA IF NOT EXISTS bdp;
+SHOW SCHEMAS;
+
+CREATE EXTERNAL TABLE IF NOT EXISTS bdp.covid_data(
+    iso_code STRING,
+    continent STRING,
+    rec_location STRING,
+    rec_date DATE,
+    total_cases INT,
+    new_cases INT,
+    new_cases_smoothed INT,
+    total_deaths INT,
+    new_deaths INT,
+    new_deaths_smoothed INT,
+    total_cases_per_million INT,
+    new_cases_per_million INT,
+    new_cases_smoothed_per_million INT,
+    total_deaths_per_million INT,
+    new_deaths_per_million INT,
+    new_deaths_smoothed_per_million INT,
+    reproduction_rate INT,
+    icu_patients INT,
+    icu_patients_per_million INT,
+    hosp_patients INT,
+    hosp_patients_per_million INT,
+    weekly_icu_admissions INT,
+    weekly_icu_admissions_per_million INT,
+    weekly_hosp_admissions INT,
+    weekly_hosp_admissions_per_million INT,
+    total_tests INT,
+    total_tests_per_thousand INT,
+    new_tests_per_thousand INT,
+    new_tests_smoothed_per_thousand INT,
+    positive_rate INT,
+    tests_per_case INT,
+    tests_units INT,
+    total_vaccinations INT,
+    people_vaccinated INT,
+    people_fully_vaccinated INT,
+    new_vaccinations INT,
+    new_vaccinations_smoothed INT,
+    total_vaccinations_per_hundred INT,
+    people_vaccinated_per_hundred INT,
+    people_fully_vaccinated_per_hundred INT,
+    new_vaccinations_smoothed_per_million INT,
+    stringency_index INT,
+    population_density INT,
+    median_age INT,
+    aged_65_older INT,
+    aged_70_older INT,
+    gdp_per_capita INT,
+    extreme_poverty INT,
+    cardiovasc_death_rate INT,
+    diabetes_prevalence INT,
+    female_smokers INT,
+    male_smokers INT,
+    handwashing_facilities INT,
+    hospital_beds_per_thousand INT,
+    life_expectancy INT,
+    human_development_index INT
+    )
+COMMENT 'covid data'
+ROW FORMAT DELIMITED
+FIELDS TERMINATED BY ','
+STORED AS TEXTFILE
+location 'ofs://ozone1/s3v/bucket1/vaccine-dataset'
+tblproperties ("skip.header.line.count"="1");
